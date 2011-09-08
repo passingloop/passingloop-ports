@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:filetype=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem      1.0
+PortGroup       cmake 1.0
+
+name            Io
+version         20110908
+categories      lang
+platforms       macosx
+maintainers     gmail.com:passingloop
+description     Io is small prototype-based programming language
+long_description \
+    Io is small prototype-based programming language. The ideas in Io are   \
+    mostly inspired by Smalltalk (all values are objects), Self,            \
+    NewtonScript and Act1 (prototype-based differential inheritance, actors \
+    and futures for concurrency), LISP (code is a runtime inspectable /     \
+    modifiable tree) and Lua (small, embeddable).
+license         BSD
+homepage        http://www.iolanguage.com/
+depends_lib-append port:libevent port:yajl1
+pre-fetch {
+    curl fetch https://raw.github.com/gist/1202335/2d5cf7607f605230905cefd008a2745144ece900/Common_inline.h.diff ${distpath}/${patchfiles}
+}
+patchfiles      Common_inline.h.diff
+checksums       Common_inline.h.diff \
+    md5    81ab4c8a302153bd7260e75d95cee384 \
+    sha1   a2e26bb60b5487051e5ca6cbd1445d7bc98fca73 \
+    rmd160 f80c3fce4be0720392d5a8d58f10f4e48a880815
+fetch.type      git
+git.url         https://github.com/stevedekorte/io.git
+git.branch      c656eaa362
+use_parallel_build no
